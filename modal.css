@@ -527,3 +527,7 @@ footer {
     opacity: 1;
   }
 }
+
+#success_message {
+  display: none;
+}

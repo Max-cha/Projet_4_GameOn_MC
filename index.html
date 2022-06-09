@@ -55,9 +55,10 @@
         <div class="content">
           <span class="close" title="close"></span>
           <div class="modal-body">
+            <p id="success_message">Bien joué ! Vous êtes inscrit au prochain Marathon !.</p>
             <form
               name="reserve"
-              onsubmit="submitform(event)">
+              action="index.html" method="get">
               <div
                 class="formData">
                 <label for="first">Prénom</label><br>
@@ -105,7 +106,7 @@
               </div>
               <p class="text-label">Quelles villes ?</p>
               <div
-                class="formData">
+                class="formData" id="locations">
                 <input
                   class="checkbox-input"
                   type="radio"
@@ -175,7 +176,7 @@
               </div>
 
               <div
-                class="formData">
+                class="formData" id="conditions">
                 <input
                   class="checkbox-input"
                   type="checkbox"
