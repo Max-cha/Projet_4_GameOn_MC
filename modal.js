@@ -32,66 +32,66 @@ function launchModal() {
 //FERMER LA LANDING PAGE
 exitButton.addEventListener("click", exitModal);
 
-function exitModal(){
+function exitModal() {
   modalbg.style.display = "none";
+  form.style.display = "block";
+  document.getElementById("success_message").style.display="none"
 }
 
 
 //COCHER LES CONDITIONS
-function conditionsChecked(){
-  if(checkConditions.checked === false){
-  const conditions = document.querySelectorAll('[name="conditions"]:checked');
-  console.log(conditions)
-   if(conditions.value.length !== 1){
-    conditions.parentElement.dataset.error="Merci d'accepter les conditions de participation"
-    conditions.parentElement.dataset.errorVisible=true
+function conditionsChecked() {
+  if (checkConditions.checked === false) {
+    checkConditions.parentElement.dataset.error = "Merci d'accepter les conditions de participation"
+    checkConditions.parentElement.dataset.errorVisible = true
     return false;
   }
-      conditions.parentElement.dataset.error=null
-      conditions.parentElement.dataset.errorVisible=false
-      return true;
-    }
-
+  checkConditions.parentElement.dataset.error = null
+  checkConditions.parentElement.dataset.errorVisible = false
+  return true;
+}
 
 // COCHER CASE VILLE
-function cityChecked(){
+function cityChecked() {
   let listLocation = document.querySelectorAll('[name="location"]:checked');
-  console.log(city)
-  if(listLocation.value.length !== 1){
-    city.parentElement.dataset.error="Merci de cocher une ville"
-    city.parentElement.dataset.errorVisible=true
+  const locationsParent = document.getElementById("locations")
+  if (listLocation.length !== 1) {
+    locationsParent.dataset.error = "Merci de cocher une ville"
+    locationsParent.dataset.errorVisible = true
     return false;
   }
-  city.parentElement.dataset.error=null
-  city.parentElement.dataset.errorVisible=false
+  locationsParent.dataset.error = null
+  locationsParent.dataset.errorVisible = false
   return true;
 }
 
 //PRENOM
-function checkfirstname(){
-  const firstname=document.getElementById("first")
+function checkfirstname() {
+  const firstname = document.getElementById("first")
   console.log(firstname)
-  if (firstname.value.length < 2){ console.log(firstname.parentElement)
-    firstname.parentElement.dataset.error="Merci de renseigner un prénom valide"
-    firstname.parentElement.dataset.errorVisible=true 
+  if (firstname.value.length < 2) {
+    console.log(firstname.parentElement)
+    firstname.parentElement.dataset.error = "Merci de renseigner un prénom valide"
+    firstname.parentElement.dataset.errorVisible = true
     return false;
   }
-  firstname.parentElement.dataset.error=null
-  firstname.parentElement.dataset.errorVisible=false
+  firstname.parentElement.dataset.error = null
+  firstname.parentElement.dataset.errorVisible = false
   return true;
 }
 
 //NOM DE FAMILLE
-function checklastname(){
-  const lastname=document.getElementById("last")
+function checklastname() {
+  const lastname = document.getElementById("last")
   console.log(lastname)
-  if (lastname.value.length < 2){ console.log(lastname.parentElement)
-    lastname.parentElement.dataset.error="Merci de renseigner un nom valide"
-    lastname.parentElement.dataset.errorVisible=true 
+  if (lastname.value.length < 2) {
+    console.log(lastname.parentElement)
+    lastname.parentElement.dataset.error = "Merci de renseigner un nom valide"
+    lastname.parentElement.dataset.errorVisible = true
     return false;
   }
-  lastname.parentElement.dataset.error=null
-  lastname.parentElement.dataset.errorVisible=false
+  lastname.parentElement.dataset.error = null
+  lastname.parentElement.dataset.errorVisible = false
   return true;
 }
 
@@ -99,42 +99,61 @@ function checklastname(){
 //MAIL
 function validateEmail(email) {
   var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-  return re.test(email);
-}
-function validate() {
-  var $result = $("#result");
-  var email = $("#email").val();
-  $result.text("");
+  var email = document.getElementById("email");
 
-  if (validateEmail(email)) {
-    $result.text(email + " is valid");
-    $result.css("color", "blue");
-  } else {
-    $result.text(email + " is not valid");
-    $result.css("color", "red");
+  if (!re.test(email.value)) {
+    email.parentElement.dataset.error = "Merci de renseigner un email valide"
+    email.parentElement.dataset.errorVisible = true
+    return false;
   }
-  return false;
+  email.parentElement.dataset.error = null
+  email.parentElement.dataset.errorVisible = false
+  return true;
 }
-$("#validate").on("click", validate);
 
-function submitform(event){
-  console.log("coucou")
+//DATE DE NAISSANCE
+function validateBirthdate(birthdate) {
+  var re = /^[0-9]{4}([\-/ \.])[0-9]{2}[\-/ \.][0-9]{2}$/;
+  var birthdate = document.getElementById("birthdate");
+
+  if (!re.test(birthdate.value)) {
+    birthdate.parentElement.dataset.error = "Merci de renseigner une date de naissance valide"
+    birthdate.parentElement.dataset.errorVisible = true
+    return false;
+  }
+  birthdate.parentElement.dataset.error = null
+  birthdate.parentElement.dataset.errorVisible = false
+  return true;
+}
+
+//NOMBRE TOURNOIS
+function quantityCheked() {
+  const quantity = document.getElementById("quantity")
+  console.log(quantity)
+  if (quantity.value.length !== 1) {
+    quantity.parentElement.dataset.error = "Merci de renseigner le nombres de tournois"
+    quantity.parentElement.dataset.errorVisible = true
+    return false;
+  }
+  quantity.parentElement.dataset.error = null
+  quantity.parentElement.dataset.errorVisible = false
+  return true;
+}
+
+//VERIFICATION DE LA LANDING PAGE PAR L'USAGER
+form.addEventListener('submit', function (event) {
   event.preventDefault();
-
-   if (checkfirstname() && checklastname() && validateEmail() && conditionsChecked() && cityChecked()) {
+  const firstnameOK = checkfirstname()
+  const lastnameOk = checklastname()
+  const emailOk = validateEmail()
+  const cityOk = cityChecked()
+  const conditionsOk = conditionsChecked()
+  const birthdateOk = validateBirthdate()
+  const quantityOk = quantityCheked()
+  if (firstnameOK && lastnameOk && emailOk && cityOk && conditionsOk && birthdateOk && quantityOk) {
     form.style.display = "none";
-    modalBody.innerHTML = "<p>Bien joué ! Vous êtes inscrit au prochain Marathon !.</p>"
-   }
+    form.reset()
+    document.getElementById("success_message").style.display="block"
+  }
 }
-//VERIFICATION DE LA LANDING PAGE REMPLIS PAR L'USAGER
-/*form.addEventListener('submit', function (event) {
-  console.log("coucou")
-  event.preventDefault();
-
-   if (checkfirstname() && checklastname() && validateEmail() && conditionsChecked() && cityChecked()) {
-    form.style.display = "none";
-    modalBody.innerHTML = "<p>Bien joué ! Vous êtes inscrit au prochain Marathon !.</p>"
-   }
-}
-) */
-}
+) 
