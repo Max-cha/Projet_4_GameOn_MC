@@ -186,6 +186,11 @@ main {
 .modal-body {
   padding: 15px 8%;
   margin: 15px auto;
+  min-height: 700px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 label {
@@ -532,3 +537,11 @@ footer {
     display: none;
   }
   
+  #btn-close {
+    visibility: hidden;
+      position: absolute;
+      bottom: 5%;
+      text-align: center;
+      left: 50%;
+      transform: translateX(-50%);
+  }
