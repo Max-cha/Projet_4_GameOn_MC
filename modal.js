@@ -83,7 +83,6 @@ function checkfirstname() {
 function checklastname() {
   const lastname = document.getElementById("last")
   if (lastname.value.length < 2) {
-    console.log(lastname.parentElement)
     lastname.parentElement.dataset.error = "Merci de renseigner un nom valide"
     lastname.parentElement.dataset.errorVisible = true
     return false;
@@ -150,15 +149,7 @@ form.addEventListener('submit', function (event) {
   if (firstnameOK && lastnameOk && emailOk && cityOk && conditionsOk && birthdateOk && quantityOk) {
     form.style.display = "none";
     form.reset()
-    const thanksMessage = document.querySelector('#thanks-message');
-    if (thanksMessage !== null) {
-      thanksMessage.style.display.block;
-    }
+    document.getElementById("success_message").style.display = "block"
   }
-  }
-)
-
-
-
-
-
+}
+) 
