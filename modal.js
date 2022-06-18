@@ -151,7 +151,10 @@ form.addEventListener('submit', function (event) {
     form.style.display = "none";
     form.reset()
     document.getElementById("success_message").style.display = "block"
+    document.getElementsByClassName("fermer").style.display = "block"
   }
 }
 ) 
+
+
 
