@@ -35,7 +35,7 @@ exitButton.addEventListener("click", exitModal);
 function exitModal() {
   modalbg.style.display = "none";
   form.style.display = "block";
-  document.getElementById("success_message").style.display="none"
+  document.getElementById("success_message").style.display = "none"
 }
 
 
@@ -68,7 +68,6 @@ function cityChecked() {
 //PRENOM
 function checkfirstname() {
   const firstname = document.getElementById("first")
-  console.log(firstname)
   if (firstname.value.length < 2) {
     console.log(firstname.parentElement)
     firstname.parentElement.dataset.error = "Merci de renseigner un prénom valide"
@@ -83,7 +82,6 @@ function checkfirstname() {
 //NOM DE FAMILLE
 function checklastname() {
   const lastname = document.getElementById("last")
-  console.log(lastname)
   if (lastname.value.length < 2) {
     console.log(lastname.parentElement)
     lastname.parentElement.dataset.error = "Merci de renseigner un nom valide"
@@ -98,7 +96,7 @@ function checklastname() {
 
 //MAIL
 function validateEmail(email) {
-  var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;  //regex pour mail
   var email = document.getElementById("email");
 
   if (!re.test(email.value)) {
@@ -113,7 +111,7 @@ function validateEmail(email) {
 
 //DATE DE NAISSANCE
 function validateBirthdate(birthdate) {
-  var re = /^[0-9]{4}([\-/ \.])[0-9]{2}[\-/ \.][0-9]{2}$/;
+  var re = /^[0-9]{4}([\-/ \.])[0-9]{2}[\-/ \.][0-9]{2}$/;     //regex date de naissance
   var birthdate = document.getElementById("birthdate");
 
   if (!re.test(birthdate.value)) {
@@ -129,7 +127,6 @@ function validateBirthdate(birthdate) {
 //NOMBRE TOURNOIS
 function quantityCheked() {
   const quantity = document.getElementById("quantity")
-  console.log(quantity)
   if (quantity.value.length !== 1) {
     quantity.parentElement.dataset.error = "Merci de renseigner le nombres de tournois"
     quantity.parentElement.dataset.errorVisible = true
@@ -153,7 +150,7 @@ form.addEventListener('submit', function (event) {
   if (firstnameOK && lastnameOk && emailOk && cityOk && conditionsOk && birthdateOk && quantityOk) {
     form.style.display = "none";
     form.reset()
-    document.getElementById("success_message").style.display="block"
+    document.getElementById("success_message").style.display = "block"
   }
 }
 ) 

@@ -215,7 +215,7 @@ input {
   display: block;
   margin-top: 7px;
   margin-bottom: 7px;
-  text-align: right;
+  text-align: left;
   line-height: 0.3;
   opacity: 0;
   transition: 0.3s;
@@ -529,5 +529,28 @@ footer {
 }
 
 #success_message {
-  display: none;
-}
+    padding: 230px 2%;
+    margin: 15px auto;
+    display: none;
+  }
+  
+  .btn-submit-2 {
+      background: #fe142f;
+      display: block;
+      margin: 0 auto;
+      border-radius: 7px;
+      font-size: 1rem;
+      padding: 12px 82px;
+      color: #fff;
+      cursor: pointer;
+      border: 0;
+      position: absolute;
+      margin: 35% 0% 1% 25%;
+  }
+  
+  .text-label-2 {
+    font-size: 100%;
+    font-weight: bold;
+    text-align: center;
+  }
+  
