@@ -150,11 +150,15 @@ form.addEventListener('submit', function (event) {
   if (firstnameOK && lastnameOk && emailOk && cityOk && conditionsOk && birthdateOk && quantityOk) {
     form.style.display = "none";
     form.reset()
-    document.getElementById("success_message").style.display = "block"
-    document.getElementsByClassName("fermer").style.display = "block"
+    const thanksMessage = document.querySelector('#thanks-message');
+    if (thanksMessage !== null) {
+      thanksMessage.style.display.block;
+    }
   }
-}
-) 
+  }
+)
+
+
 
 
 
