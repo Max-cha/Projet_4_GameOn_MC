@@ -36,6 +36,7 @@ function exitModal() {
   modalbg.style.display = "none";
   form.style.display = "block";
   document.getElementById("success_message").style.display = "none"
+  document.getElementById("close-modal").style.display= "block"
 }
 
 
@@ -149,7 +150,9 @@ form.addEventListener('submit', function (event) {
   if (firstnameOK && lastnameOk && emailOk && cityOk && conditionsOk && birthdateOk && quantityOk) {
     form.style.display = "none";
     form.reset()
-    document.getElementById("success_message").style.display = "block"
+    document.getElementById("note").style.display = "block"
+    document.getElementById("close-modal").style.display="block"
+  
   }
 }
 ) 
